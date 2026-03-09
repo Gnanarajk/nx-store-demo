@@ -4,13 +4,11 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/host/src",
-  "tags": [],
+  "tags": ["scope:host", "type:app"],
   "targets": {
     "build": {
       "executor": "@nx/angular:webpack-browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/host",
         "index": "apps/host/src/index.html",
@@ -22,9 +20,7 @@
             "input": "apps/host/public"
           }
         ],
-        "styles": [
-          "apps/host/src/styles.css"
-        ],
+        "styles": ["apps/host/src/styles.css"],
         "customWebpackConfig": {
           "path": "apps/host/webpack.config.ts"
         }
@@ -64,7 +60,8 @@
       "executor": "@nx/angular:module-federation-dev-server",
       "options": {
         "port": 4200,
-        "publicHost": "http://localhost:4200"
+        "publicHost": "http://localhost:4200",
+        "proxyConfig": "apps/host/proxy.conf.json"
       },
       "configurations": {
         "production": {

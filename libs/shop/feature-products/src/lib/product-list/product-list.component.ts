@@ -312,7 +312,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onProductSelect(product: Product) {
-    this.router.navigate(['/products', product.id]);
+    this.router.navigate(['/product', product.id]);
   }
 
   nextPage() {

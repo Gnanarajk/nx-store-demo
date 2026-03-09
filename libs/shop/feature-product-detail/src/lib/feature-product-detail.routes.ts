@@ -3,7 +3,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 
 export const featureProductDetailRoutes: Routes = [
   {
-    path: ':id',
+    path: '',
     component: ProductDetailComponent,
   },
 ];

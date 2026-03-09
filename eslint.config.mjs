@@ -24,6 +24,26 @@ export default [
               onlyDependOnLibsWithTags: ['scope:shared'],
             },
             {
+              sourceTag: 'scope:host',
+              onlyDependOnLibsWithTags: ['scope:host', 'scope:shared', 'scope:products', 'scope:productDetail', 'scope:data', 'scope:sharedUi', 'scope:shop'],
+            },
+            {
+              sourceTag: 'scope:products',
+              onlyDependOnLibsWithTags: ['scope:products', 'scope:shop', 'scope:shared'],
+            },
+            {
+              sourceTag: 'scope:productDetail',
+              onlyDependOnLibsWithTags: ['scope:productDetail', 'scope:shop', 'scope:shared'],
+            },
+            {
+              sourceTag: 'scope:data',
+              onlyDependOnLibsWithTags: ['scope:data', 'scope:api', 'scope:shared'],
+            },
+            {
+              sourceTag: 'scope:sharedUi',
+              onlyDependOnLibsWithTags: ['scope:sharedUi', 'scope:shared'],
+            },
+            {
               sourceTag: 'scope:shop',
               onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared'],
             },
@@ -34,6 +54,10 @@ export default [
             {
               sourceTag: 'type:data',
               onlyDependOnLibsWithTags: ['type:data'],
+            },
+            {
+              sourceTag: 'type:app',
+              onlyDependOnLibsWithTags: ['scope:host', 'scope:shared', 'scope:products', 'scope:productDetail', 'scope:data', 'scope:sharedUi', 'scope:shop', 'scope:api', 'type:data', 'type:feature', 'type:ui'],
             },
           ],
         },
