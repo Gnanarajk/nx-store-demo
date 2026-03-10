@@ -2,10 +2,10 @@ import { ModuleFederationConfig } from '@nx/module-federation';
 
 const config: ModuleFederationConfig = {
   name: 'host',
-  remotes: ['productsRemote', 'productDetailRemote'],
+  remotes: [
+    ['productsRemote', 'https://nxstore-products.azurewebsites.net/remoteEntry.js'],
+    ['productDetailRemote', 'https://nxstore-productdetail.azurewebsites.net/remoteEntry.js'],
+  ],
 };
 
-/**
-* Nx requires a default export of the config to allow correct resolution of the module federation graph.
-**/
 export default config;

@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "analyze:host": "ANALYZE=true npx nx build host --configuration=development",
-    "analyze:products": "ANALYZE=true npx nx build productsRemote --configuration=development",
-    "analyze:productDetail": "ANALYZE=true npx nx build productDetailRemote --configuration=development"
+    "analyze:host": "cross-env ANALYZE=true npx nx build host --configuration=development",
+    "analyze:products": "cross-env ANALYZE=true npx nx build productsRemote --configuration=development",
+    "analyze:productDetail": "cross-env ANALYZE=true npx nx build productDetailRemote --configuration=development"
   },
   "private": true,
   "dependencies": {
@@ -63,6 +63,7 @@
     "@vitest/coverage-v8": "4.0.9",
     "@vitest/ui": "4.0.9",
     "angular-eslint": "21.1.0",
+    "cross-env": "^10.1.0",
     "esbuild": "^0.19.2",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",

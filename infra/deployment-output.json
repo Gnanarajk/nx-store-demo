@@ -1,0 +1,170 @@
+{
+  "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Resources/deployments/main",
+  "location": null,
+  "name": "main",
+  "properties": {
+    "correlationId": "3ba7c032-ad7b-444d-9ed3-be99599ea327",
+    "debugSetting": null,
+    "dependencies": [
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/serverfarms/nxstore-prod-asp",
+            "resourceGroup": "nx-store-demo-rg",
+            "resourceName": "nxstore-prod-asp",
+            "resourceType": "Microsoft.Web/serverfarms"
+          }
+        ],
+        "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/sites/nxstore-host",
+        "resourceGroup": "nx-store-demo-rg",
+        "resourceName": "nxstore-host",
+        "resourceType": "Microsoft.Web/sites"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/serverfarms/nxstore-prod-asp",
+            "resourceGroup": "nx-store-demo-rg",
+            "resourceName": "nxstore-prod-asp",
+            "resourceType": "Microsoft.Web/serverfarms"
+          }
+        ],
+        "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/sites/nxstore-products",
+        "resourceGroup": "nx-store-demo-rg",
+        "resourceName": "nxstore-products",
+        "resourceType": "Microsoft.Web/sites"
+      },
+      {
+        "dependsOn": [
+          {
+            "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/serverfarms/nxstore-prod-asp",
+            "resourceGroup": "nx-store-demo-rg",
+            "resourceName": "nxstore-prod-asp",
+            "resourceType": "Microsoft.Web/serverfarms"
+          }
+        ],
+        "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/sites/nxstore-productdetail",
+        "resourceGroup": "nx-store-demo-rg",
+        "resourceName": "nxstore-productdetail",
+        "resourceType": "Microsoft.Web/sites"
+      }
+    ],
+    "diagnostics": null,
+    "duration": "PT20.7540578S",
+    "error": null,
+    "extensions": [],
+    "mode": "Incremental",
+    "onErrorDeployment": null,
+    "outputResources": [
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/serverfarms/nxstore-prod-asp",
+        "identifiers": null,
+        "resourceGroup": "nx-store-demo-rg",
+        "resourceType": "Microsoft.Web/serverfarms"
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/sites/nxstore-host",
+        "identifiers": null,
+        "resourceGroup": "nx-store-demo-rg",
+        "resourceType": "Microsoft.Web/sites"
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/sites/nxstore-productdetail",
+        "identifiers": null,
+        "resourceGroup": "nx-store-demo-rg",
+        "resourceType": "Microsoft.Web/sites"
+      },
+      {
+        "apiVersion": null,
+        "extension": null,
+        "id": "/subscriptions/f50320f8-323e-48ce-8407-ea658f704490/resourceGroups/nx-store-demo-rg/providers/Microsoft.Web/sites/nxstore-products",
+        "identifiers": null,
+        "resourceGroup": "nx-store-demo-rg",
+        "resourceType": "Microsoft.Web/sites"
+      }
+    ],
+    "outputs": {
+      "hostUrl": {
+        "type": "String",
+        "value": "https://nxstore-host.azurewebsites.net"
+      },
+      "productDetailUrl": {
+        "type": "String",
+        "value": "https://nxstore-productdetail.azurewebsites.net"
+      },
+      "productsUrl": {
+        "type": "String",
+        "value": "https://nxstore-products.azurewebsites.net"
+      }
+    },
+    "parameters": {
+      "env": {
+        "type": "String",
+        "value": "prod"
+      },
+      "location": {
+        "type": "String",
+        "value": "westeurope"
+      },
+      "prefix": {
+        "type": "String",
+        "value": "nxstore"
+      }
+    },
+    "parametersLink": null,
+    "providers": [
+      {
+        "id": null,
+        "namespace": "Microsoft.Web",
+        "providerAuthorizationConsentState": null,
+        "registrationPolicy": null,
+        "registrationState": null,
+        "resourceTypes": [
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              "westeurope"
+            ],
+            "properties": null,
+            "resourceType": "serverfarms",
+            "zoneMappings": null
+          },
+          {
+            "aliases": null,
+            "apiProfiles": null,
+            "apiVersions": null,
+            "capabilities": null,
+            "defaultApiVersion": null,
+            "locationMappings": null,
+            "locations": [
+              "westeurope"
+            ],
+            "properties": null,
+            "resourceType": "sites",
+            "zoneMappings": null
+          }
+        ]
+      }
+    ],
+    "provisioningState": "Succeeded",
+    "templateHash": "7098525573576117773",
+    "templateLink": null,
+    "timestamp": "2026-03-10T10:12:10.910817+00:00",
+    "validatedResources": null,
+    "validationLevel": null
+  },
+  "resourceGroup": "nx-store-demo-rg",
+  "tags": null,
+  "type": "Microsoft.Resources/deployments"
+}

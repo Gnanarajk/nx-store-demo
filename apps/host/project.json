@@ -65,7 +65,8 @@
       },
       "configurations": {
         "production": {
-          "buildTarget": "host:build:production"
+          "buildTarget": "host:build:production",
+          "publicHost": "https://nxstore-host.azurewebsites.net"
         },
         "development": {
           "buildTarget": "host:build:development"
