@@ -33,14 +33,25 @@ jobs:
           npx nx build productsRemote --configuration=production --skip-nx-cache
           npx nx build productDetailRemote --configuration=production --skip-nx-cache
 
-      - name: Upload build artifacts
+      - name: Upload Host artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: |
-            dist/apps/host
-            dist/apps/productsRemote
-            dist/apps/productDetailRemote
+          name: host
+          path: dist/apps/host
+          retention-days: 1
+
+      - name: Upload Products artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: products
+          path: dist/apps/productsRemote
+          retention-days: 1
+
+      - name: Upload ProductDetail artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: productdetail
+          path: dist/apps/productDetailRemote
           retention-days: 1
 
   deploy:
@@ -48,14 +59,23 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Download build artifacts
+      - name: Download Host artifact
         uses: actions/download-artifact@v4
         with:
-          name: dist
-          path: ./dist
+          name: host
+          path: ./host
 
-      - name: Show structure
-        run: find dist -type f -name "*.html" | head -20
+      - name: Download Products artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: products
+          path: ./products
+
+      - name: Download ProductDetail artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: productdetail
+          path: ./productdetail
 
       - name: Azure Login
         uses: azure/login@v2
@@ -66,18 +86,18 @@ jobs:
 
       - name: Deploy Host
         run: |
-          pwd
-          ls -la dist/
-          ls -la dist/apps/
-          cd dist/apps/host && zip -r ../../host.zip * && az webapp deployment source config-zip --name nxstore-host --resource-group nx-store-demo-rg --src ../../host.zip
+          cd host && zip -r ../host.zip * && cd ..
+          az webapp deployment source config-zip --name nxstore-host --resource-group nx-store-demo-rg --src host.zip
 
       - name: Deploy Products Remote
         run: |
-          cd dist/apps/productsRemote && zip -r ../../products.zip * && az webapp deployment source config-zip --name nxstore-products --resource-group nx-store-demo-rg --src ../../products.zip
+          cd products && zip -r ../products.zip * && cd ..
+          az webapp deployment source config-zip --name nxstore-products --resource-group nx-store-demo-rg --src products.zip
 
       - name: Deploy Product Detail Remote
         run: |
-          cd dist/apps/productDetailRemote && zip -r ../../detail.zip * && az webapp deployment source config-zip --name nxstore-productdetail --resource-group nx-store-demo-rg --src ../../detail.zip
+          cd productdetail && zip -r ../detail.zip * && cd ..
+          az webapp deployment source config-zip --name nxstore-productdetail --resource-group nx-store-demo-rg --src detail.zip
 
       - name: Azure logout
         run: az logout
