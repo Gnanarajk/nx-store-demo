@@ -63,19 +63,20 @@ jobs:
 
       - name: Deploy Host
         run: |
-          cd ./dist/apps/host
+          ls -la
+          cd dist/apps/host
           zip -r host.zip *
           az webapp deployment source config-zip --name nxstore-host --resource-group nx-store-demo-rg --src host.zip
 
       - name: Deploy Products Remote
         run: |
-          cd ./dist/apps/productsRemote
+          cd dist/apps/productsRemote
           zip -r products.zip *
           az webapp deployment source config-zip --name nxstore-products --resource-group nx-store-demo-rg --src products.zip
 
       - name: Deploy Product Detail Remote
         run: |
-          cd ./dist/apps/productDetailRemote
+          cd dist/apps/productDetailRemote
           zip -r detail.zip *
           az webapp deployment source config-zip --name nxstore-productdetail --resource-group nx-store-demo-rg --src detail.zip
 
