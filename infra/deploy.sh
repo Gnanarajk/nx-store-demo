@@ -57,7 +57,7 @@ RESOURCE_GROUP="nx-store-demo-rg"
 SP_PASSWORD=$(az ad sp create-for-rbac \
     --name "nx-store-demo-cicd" \
     --role contributor \
-    --scope "//subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RESOURCE_GROUP}" \
+    --scope "subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RESOURCE_GROUP}" \
     --query password -o tsv)
 
 SP_APP_ID=$(az ad sp list \
