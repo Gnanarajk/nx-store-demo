@@ -33,11 +33,14 @@ jobs:
           npx nx build productsRemote --configuration=production --skip-nx-cache
           npx nx build productDetailRemote --configuration=production --skip-nx-cache
 
-      - name: Zip artifacts
-        run: |
-          cd dist/apps/host && zip -r ../../../host.zip * && cd ../..
-          cd dist/apps/productsRemote && zip -r ../../../products.zip * && cd ../..
-          cd dist/apps/productDetailRemote && zip -r ../../../detail.zip * && cd ../..
+      - name: Zip host artifact
+        run: zip -j host.zip dist/apps/host/*
+
+      - name: Zip products artifact
+        run: zip -j products.zip dist/apps/productsRemote/*
+
+      - name: Zip productdetail artifact
+        run: zip -j detail.zip dist/apps/productDetailRemote/*
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
