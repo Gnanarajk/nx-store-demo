@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - nx-cloud-setup
 
 permissions:
   contents: read
