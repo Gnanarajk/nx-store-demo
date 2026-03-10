@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: production
-    
+
     steps:
       - uses: actions/checkout@v4
 
@@ -24,13 +24,13 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build applications
         run: |
-          npx nx build host --configuration=production
-          npx nx build productsRemote --configuration=production
-          npx nx build productDetailRemote --configuration=production
+          npx nx build host --configuration=production --skip-nx-cache
+          npx nx build productsRemote --configuration=production --skip-nx-cache
+          npx nx build productDetailRemote --configuration=production --skip-nx-cache
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
