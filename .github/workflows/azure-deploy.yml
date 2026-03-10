@@ -33,25 +33,20 @@ jobs:
           npx nx build productsRemote --configuration=production --skip-nx-cache
           npx nx build productDetailRemote --configuration=production --skip-nx-cache
 
-      - name: Upload Host artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: host
-          path: dist/apps/host
-          retention-days: 1
+      - name: Zip artifacts
+        run: |
+          cd dist/apps/host && zip -r ../../../host.zip * && cd ../..
+          cd dist/apps/productsRemote && zip -r ../../../products.zip * && cd ../..
+          cd dist/apps/productDetailRemote && zip -r ../../../detail.zip * && cd ../..
 
-      - name: Upload Products artifact
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: products
-          path: dist/apps/productsRemote
-          retention-days: 1
-
-      - name: Upload ProductDetail artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: productdetail
-          path: dist/apps/productDetailRemote
+          name: deploy-artifacts
+          path: |
+            host.zip
+            products.zip
+            detail.zip
           retention-days: 1
 
   deploy:
@@ -59,23 +54,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Download Host artifact
+      - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          name: host
-          path: ./host
-
-      - name: Download Products artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: products
-          path: ./products
-
-      - name: Download ProductDetail artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: productdetail
-          path: ./productdetail
+          name: deploy-artifacts
+          path: ./
 
       - name: Azure Login
         uses: azure/login@v2
@@ -85,19 +68,13 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy Host
-        run: |
-          cd host && zip -r ../host.zip * && cd ..
-          az webapp deployment source config-zip --name nxstore-host --resource-group nx-store-demo-rg --src host.zip
+        run: az webapp deployment source config-zip --name nxstore-host --resource-group nx-store-demo-rg --src host.zip
 
       - name: Deploy Products Remote
-        run: |
-          cd products && zip -r ../products.zip * && cd ..
-          az webapp deployment source config-zip --name nxstore-products --resource-group nx-store-demo-rg --src products.zip
+        run: az webapp deployment source config-zip --name nxstore-products --resource-group nx-store-demo-rg --src products.zip
 
       - name: Deploy Product Detail Remote
-        run: |
-          cd productdetail && zip -r ../detail.zip * && cd ..
-          az webapp deployment source config-zip --name nxstore-productdetail --resource-group nx-store-demo-rg --src detail.zip
+        run: az webapp deployment source config-zip --name nxstore-productdetail --resource-group nx-store-demo-rg --src detail.zip
 
       - name: Azure logout
         run: az logout
