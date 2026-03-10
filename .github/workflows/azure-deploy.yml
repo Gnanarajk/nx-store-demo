@@ -62,22 +62,22 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy Host
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: nxstore-host
-          package: ./dist/apps/host
+        run: |
+          cd ./dist/apps/host
+          zip -r host.zip *
+          az webapp deployment source config-zip --name nxstore-host --resource-group nx-store-demo-rg --src host.zip
 
       - name: Deploy Products Remote
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: nxstore-products
-          package: ./dist/apps/productsRemote
+        run: |
+          cd ./dist/apps/productsRemote
+          zip -r products.zip *
+          az webapp deployment source config-zip --name nxstore-products --resource-group nx-store-demo-rg --src products.zip
 
       - name: Deploy Product Detail Remote
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: nxstore-productdetail
-          package: ./dist/apps/productDetailRemote
+        run: |
+          cd ./dist/apps/productDetailRemote
+          zip -r detail.zip *
+          az webapp deployment source config-zip --name nxstore-productdetail --resource-group nx-store-demo-rg --src detail.zip
 
       - name: Azure logout
         run: az logout
