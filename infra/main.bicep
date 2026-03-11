@@ -65,24 +65,6 @@ resource productDetailApp 'Microsoft.Web/sites@2023-12-01' = {
   }
 }
 
-resource productDetailApp 'Microsoft.Web/sites@2023-12-01' = {
-  name: '${prefix}-productdetail'
-  location: location
-  kind: 'web'
-  identity: {
-    type: 'SystemAssigned'
-  }
-  properties: {
-    serverFarmId: appServicePlan.id
-    httpsOnly: true
-    siteConfig: {
-      cors: {
-        allowedOrigins: ['*']
-      }
-    }
-  }
-}
-
 resource apiApp 'Microsoft.Web/sites@2023-12-01' = {
   name: '${prefix}-api'
   location: location
