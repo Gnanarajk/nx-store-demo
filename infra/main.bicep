@@ -39,6 +39,9 @@ resource productsApp 'Microsoft.Web/sites@2023-12-01' = {
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: true
+    cors: {
+      allowedOrigins: ['https://nxstore-host.azurewebsites.net']
+    }
   }
 }
 
@@ -52,6 +55,9 @@ resource productDetailApp 'Microsoft.Web/sites@2023-12-01' = {
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: true
+    cors: {
+      allowedOrigins: ['https://nxstore-host.azurewebsites.net']
+    }
   }
 }
 
