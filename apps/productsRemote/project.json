@@ -20,6 +20,11 @@
           {
             "glob": "**/*",
             "input": "apps/productsRemote/public"
+          },
+          {
+            "glob": "web.config",
+            "input": "apps/productsRemote",
+            "output": "/"
           }
         ],
         "styles": [
