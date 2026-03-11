@@ -39,8 +39,10 @@ resource productsApp 'Microsoft.Web/sites@2023-12-01' = {
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: true
-    cors: {
-      allowedOrigins: ['https://nxstore-host.azurewebsites.net']
+    siteConfig: {
+      cors: {
+        allowedOrigins: ['*']
+      }
     }
   }
 }
@@ -55,8 +57,10 @@ resource productDetailApp 'Microsoft.Web/sites@2023-12-01' = {
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: true
-    cors: {
-      allowedOrigins: ['https://nxstore-host.azurewebsites.net']
+    siteConfig: {
+      cors: {
+        allowedOrigins: ['*']
+      }
     }
   }
 }
@@ -64,14 +68,13 @@ resource productDetailApp 'Microsoft.Web/sites@2023-12-01' = {
 resource apiApp 'Microsoft.Web/sites@2023-12-01' = {
   name: '${prefix}-api'
   location: location
-  kind: 'node'
+  kind: 'app'
   identity: {
     type: 'SystemAssigned'
   }
   properties: {
     serverFarmId: appServicePlan.id
     httpsOnly: true
-    linuxFxVersion: 'NODE|20-lts'
   }
 }
 
