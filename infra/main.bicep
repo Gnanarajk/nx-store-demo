@@ -55,6 +55,21 @@ resource productDetailApp 'Microsoft.Web/sites@2023-12-01' = {
   }
 }
 
+resource apiApp 'Microsoft.Web/sites@2023-12-01' = {
+  name: '${prefix}-api'
+  location: location
+  kind: 'node'
+  identity: {
+    type: 'SystemAssigned'
+  }
+  properties: {
+    serverFarmId: appServicePlan.id
+    httpsOnly: true
+    linuxFxVersion: 'NODE|20-lts'
+  }
+}
+
 output hostUrl string = 'https://${hostApp.properties.defaultHostName}'
 output productsUrl string = 'https://${productsApp.properties.defaultHostName}'
 output productDetailUrl string = 'https://${productDetailApp.properties.defaultHostName}'
+output apiUrl string = 'https://${apiApp.properties.defaultHostName}'

@@ -32,6 +32,7 @@ jobs:
           npx nx build host --configuration=production --skip-nx-cache
           npx nx build productsRemote --configuration=production --skip-nx-cache
           npx nx build productDetailRemote --configuration=production --skip-nx-cache
+          npx nx build api --configuration=production --skip-nx-cache
 
       - name: Zip host artifact
         run: zip -j host.zip dist/apps/host/*
@@ -42,6 +43,9 @@ jobs:
       - name: Zip productdetail artifact
         run: zip -j detail.zip dist/apps/productDetailRemote/*
 
+      - name: Zip api artifact
+        run: zip -j api.zip dist/apps/api/*
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -50,6 +54,7 @@ jobs:
             host.zip
             products.zip
             detail.zip
+            api.zip
           retention-days: 1
 
   deploy:
@@ -78,6 +83,9 @@ jobs:
 
       - name: Deploy Product Detail Remote
         run: az webapp deployment source config-zip --name nxstore-productdetail --resource-group nx-store-demo-rg --src detail.zip
+
+      - name: Deploy API
+        run: az webapp deployment source config-zip --name nxstore-api --resource-group nx-store-demo-rg --src api.zip
 
       - name: Azure logout
         run: az logout
