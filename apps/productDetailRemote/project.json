@@ -51,7 +51,13 @@
           "outputHashing": "all",
           "customWebpackConfig": {
             "path": "apps/productDetailRemote/webpack.prod.config.ts"
-          }
+          },
+          "fileReplacements": [
+            {
+              "replace": "libs/shop/data/src/environments/environment.ts",
+              "with": "libs/shop/data/src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "buildOptimizer": false,
