@@ -46,8 +46,7 @@ jobs:
       - name: Zip api artifact
         run: |
           mkdir -p api-deploy
-          cp apps/api/dist/* api-deploy/
-          cp apps/api/dist/package.json api-deploy/ 2>/dev/null || true
+          cp -r apps/api/dist/* api-deploy/
           cd api-deploy && zip -r ../api.zip * && cd ..
           rm -rf api-deploy
 
