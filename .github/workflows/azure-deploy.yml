@@ -29,10 +29,10 @@ jobs:
 
       - name: Build applications
         run: |
+          npx nx build api --configuration=production --skip-nx-cache
           npx nx build host --configuration=production --skip-nx-cache
           npx nx build productsRemote --configuration=production --skip-nx-cache
           npx nx build productDetailRemote --configuration=production --skip-nx-cache
-          npx nx build api --configuration=production --skip-nx-cache
 
       - name: Zip host artifact
         run: zip -j host.zip dist/apps/host/*
