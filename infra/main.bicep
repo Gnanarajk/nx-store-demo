@@ -79,7 +79,6 @@ resource apiApp 'Microsoft.Web/sites@2023-12-01' = {
       cors: {
         allowedOrigins: ['*']
       }
-      appCommandLine: 'node apps/api/dist/main.js'
     }
   }
 }

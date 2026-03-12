@@ -44,7 +44,12 @@ jobs:
         run: zip -j detail.zip dist/apps/productDetailRemote/*
 
       - name: Zip api artifact
-        run: zip -r api.zip apps/api/dist/
+        run: |
+          mkdir -p api-deploy
+          cp apps/api/dist/* api-deploy/
+          cp apps/api/dist/package.json api-deploy/ 2>/dev/null || true
+          cd api-deploy && zip -r ../api.zip * && cd ..
+          rm -rf api-deploy
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
